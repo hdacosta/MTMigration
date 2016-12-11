@@ -51,7 +51,7 @@ static NSString * const MTMigrationLastAppBuildKey   = @"MTMigration.lastAppBuil
 
 
 + (void) applicationUpdateBlock:(MTExecutionBlock)updateBlock {
-    if (![[self lastAppVersion] isEqualToString:[self appVersion]]) {
+    if ([self shouldUpdate]) {
         updateBlock();
 
         #if DEBUG
@@ -62,6 +62,10 @@ static NSString * const MTMigrationLastAppBuildKey   = @"MTMigration.lastAppBuil
     }
 }
 
++(BOOL) shouldUpdate
+{
+    return ![[self lastAppVersion] isEqualToString:[self appVersion]];
+}
 
 + (void) buildNumberUpdateBlock:(MTExecutionBlock)updateBlock {
     if (![[self lastAppBuild] isEqualToString:[self appBuild]]) {
