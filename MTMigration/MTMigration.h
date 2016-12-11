@@ -58,4 +58,7 @@ typedef void (^MTExecutionBlock)(void);
 
 + (void) reset;
 
+/** Returns the current app version */
++ (NSString *) lastAppVersion;
+
 @end
